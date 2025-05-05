@@ -27,8 +27,7 @@ test_queries = load_test_queries(TEST_QUERY_FILE)
 # Set up LangChain Gemini LLM (latest pattern)
 # You must have `langchain-google-genai` installed: pip install -U langchain-google-genai
 # Set your API key in the environment variable 'GOOGLE_API_KEY'.
-if "GOOGLE_API_KEY" not in os.environ:
-    os.environ["GOOGLE_API_KEY"] = "AIzaSyDr6W4RM1w5lGtQlfmRFVrBbWKF0xdSibg"
+
 
 llm = ChatGoogleGenerativeAI(
     model="gemini-2.0-flash-exp",  # Or the latest Gemini model you want

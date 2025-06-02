@@ -3,7 +3,7 @@ import os
 import matplotlib.pyplot as plt
 
 # Path to results file
-data_path = os.path.join(os.path.dirname(__file__), 'data', 'gemini_eval_results_query_end_injection.json')
+data_path = os.path.join(os.path.dirname(__file__), 'data', 'gemini_eval_results_query_injection_front.json')
 
 # Load results
 def load_results(path):

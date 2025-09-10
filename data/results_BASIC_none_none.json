@@ -1,0 +1,102 @@
+[
+  {
+    "qid": "q18",
+    "docid": "p6285",
+    "ground_truth_score": 2,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 2,
+    "raw_response": "2"
+  },
+  {
+    "qid": "q18",
+    "docid": "p2197",
+    "ground_truth_score": 2,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 2,
+    "raw_response": "2"
+  },
+  {
+    "qid": "q18",
+    "docid": "p7008",
+    "ground_truth_score": 1,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 3,
+    "raw_response": "3"
+  },
+  {
+    "qid": "q18",
+    "docid": "p6154",
+    "ground_truth_score": 2,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 2,
+    "raw_response": "2"
+  },
+  {
+    "qid": "q18",
+    "docid": "p2570",
+    "ground_truth_score": 0,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 0,
+    "raw_response": "0"
+  },
+  {
+    "qid": "q18",
+    "docid": "p75",
+    "ground_truth_score": 0,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 0,
+    "raw_response": "0"
+  },
+  {
+    "qid": "q18",
+    "docid": "p10760",
+    "ground_truth_score": 0,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 0,
+    "raw_response": "0"
+  },
+  {
+    "qid": "q18",
+    "docid": "p5019",
+    "ground_truth_score": 0,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 1,
+    "raw_response": "1"
+  },
+  {
+    "qid": "q18",
+    "docid": "p4493",
+    "ground_truth_score": 0,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 0,
+    "raw_response": "0"
+  },
+  {
+    "qid": "q18",
+    "docid": "p235",
+    "ground_truth_score": 1,
+    "prompt_type": "BASIC",
+    "attack_type": "none",
+    "mitigation_type": "none",
+    "llm_score": 2,
+    "raw_response": "2"
+  }
+]

@@ -1,0 +1,1502 @@
+[
+  {
+    "qid": "q18",
+    "docid": "p2570",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q18",
+    "docid": "p75",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q18",
+    "docid": "p10760",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q18",
+    "docid": "p5019",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q18",
+    "docid": "p4493",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q18",
+    "docid": "p6285",
+    "true_rel": 2,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q18",
+    "docid": "p2197",
+    "true_rel": 2,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q18",
+    "docid": "p7008",
+    "true_rel": 1,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q18",
+    "docid": "p6154",
+    "true_rel": 2,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q18",
+    "docid": "p235",
+    "true_rel": 1,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q11",
+    "docid": "p8191",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q11",
+    "docid": "p5241",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q11",
+    "docid": "p10775",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q11",
+    "docid": "p4938",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q11",
+    "docid": "p2292",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q11",
+    "docid": "p1718",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q11",
+    "docid": "p1084",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q11",
+    "docid": "p2118",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q11",
+    "docid": "p9138",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q11",
+    "docid": "p6883",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q47",
+    "docid": "p8232",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q47",
+    "docid": "p2748",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q47",
+    "docid": "p3095",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q47",
+    "docid": "p1749",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q47",
+    "docid": "p7277",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q47",
+    "docid": "p4283",
+    "true_rel": 2,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q47",
+    "docid": "p11096",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q47",
+    "docid": "p1780",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q47",
+    "docid": "p358",
+    "true_rel": 2,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q47",
+    "docid": "p4815",
+    "true_rel": 2,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q5",
+    "docid": "p10",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q5",
+    "docid": "p2863",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q5",
+    "docid": "p11077",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q5",
+    "docid": "p10706",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q5",
+    "docid": "p9351",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q5",
+    "docid": "p4659",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q5",
+    "docid": "p5472",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q5",
+    "docid": "p5239",
+    "true_rel": 3,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q5",
+    "docid": "p117",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q5",
+    "docid": "p843",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q6",
+    "docid": "p5328",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q6",
+    "docid": "p10126",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q6",
+    "docid": "p4215",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q6",
+    "docid": "p9400",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q6",
+    "docid": "p6849",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q6",
+    "docid": "p4097",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q6",
+    "docid": "p846",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q6",
+    "docid": "p7473",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q6",
+    "docid": "p7986",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q6",
+    "docid": "p11620",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q7",
+    "docid": "p1092",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q7",
+    "docid": "p2960",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q7",
+    "docid": "p10673",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q7",
+    "docid": "p10921",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q7",
+    "docid": "p6266",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q7",
+    "docid": "p6404",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q7",
+    "docid": "p1613",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q7",
+    "docid": "p703",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q7",
+    "docid": "p8287",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q7",
+    "docid": "p1604",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q8",
+    "docid": "p10772",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q8",
+    "docid": "p9127",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q8",
+    "docid": "p131",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q8",
+    "docid": "p8959",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q8",
+    "docid": "p1426",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q8",
+    "docid": "p7818",
+    "true_rel": 2,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q8",
+    "docid": "p11138",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q8",
+    "docid": "p239",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q8",
+    "docid": "p6909",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q8",
+    "docid": "p1791",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q26",
+    "docid": "p1668",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q26",
+    "docid": "p3564",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q26",
+    "docid": "p148",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q26",
+    "docid": "p4522",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q26",
+    "docid": "p2296",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q26",
+    "docid": "p10159",
+    "true_rel": 1,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q26",
+    "docid": "p7721",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q26",
+    "docid": "p1383",
+    "true_rel": 1,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q26",
+    "docid": "p8270",
+    "true_rel": 1,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q26",
+    "docid": "p9162",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q40",
+    "docid": "p8279",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q40",
+    "docid": "p5210",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q40",
+    "docid": "p8558",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q40",
+    "docid": "p9982",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q40",
+    "docid": "p10404",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q40",
+    "docid": "p1144",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q40",
+    "docid": "p5707",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q40",
+    "docid": "p988",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q40",
+    "docid": "p10992",
+    "true_rel": 2,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q40",
+    "docid": "p2643",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q10",
+    "docid": "p8088",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q10",
+    "docid": "p11351",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q10",
+    "docid": "p8602",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q10",
+    "docid": "p30",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q10",
+    "docid": "p5222",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q10",
+    "docid": "p1288",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q10",
+    "docid": "p11589",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q10",
+    "docid": "p5903",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q10",
+    "docid": "p3740",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q10",
+    "docid": "p9282",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q29",
+    "docid": "p5345",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q29",
+    "docid": "p4793",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q29",
+    "docid": "p6542",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q29",
+    "docid": "p3535",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q29",
+    "docid": "p10587",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q29",
+    "docid": "p9022",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q29",
+    "docid": "p3812",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q29",
+    "docid": "p10851",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q29",
+    "docid": "p3462",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q29",
+    "docid": "p2172",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q44",
+    "docid": "p3868",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q44",
+    "docid": "p5333",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q44",
+    "docid": "p9639",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q44",
+    "docid": "p9429",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q44",
+    "docid": "p390",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q44",
+    "docid": "p5671",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q44",
+    "docid": "p11273",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q44",
+    "docid": "p5996",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q44",
+    "docid": "p9023",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q44",
+    "docid": "p378",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q24",
+    "docid": "p4626",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q24",
+    "docid": "p295",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q24",
+    "docid": "p2882",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q24",
+    "docid": "p11385",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q24",
+    "docid": "p5538",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q24",
+    "docid": "p2348",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q24",
+    "docid": "p65",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q24",
+    "docid": "p9794",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q24",
+    "docid": "p4469",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q24",
+    "docid": "p4110",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q28",
+    "docid": "p9898",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q28",
+    "docid": "p9326",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q28",
+    "docid": "p9669",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q28",
+    "docid": "p4426",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q28",
+    "docid": "p1463",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q28",
+    "docid": "p9588",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q28",
+    "docid": "p5038",
+    "true_rel": 1,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q28",
+    "docid": "p5973",
+    "true_rel": 2,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q28",
+    "docid": "p8946",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q28",
+    "docid": "p8356",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q21",
+    "docid": "p762",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q21",
+    "docid": "p10921",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q21",
+    "docid": "p7812",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q21",
+    "docid": "p9599",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q21",
+    "docid": "p899",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q21",
+    "docid": "p1334",
+    "true_rel": 3,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q21",
+    "docid": "p1458",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q21",
+    "docid": "p11353",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q21",
+    "docid": "p5027",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q21",
+    "docid": "p1082",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q27",
+    "docid": "p9291",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q27",
+    "docid": "p9187",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q27",
+    "docid": "p5898",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q27",
+    "docid": "p3427",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q27",
+    "docid": "p8322",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q27",
+    "docid": "p3419",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q27",
+    "docid": "p9016",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q27",
+    "docid": "p969",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q27",
+    "docid": "p10902",
+    "true_rel": 3,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q27",
+    "docid": "p10589",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q23",
+    "docid": "p4119",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q23",
+    "docid": "p8800",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q23",
+    "docid": "p11491",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q23",
+    "docid": "p6770",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q23",
+    "docid": "p3688",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q23",
+    "docid": "p8016",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q23",
+    "docid": "p6239",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q23",
+    "docid": "p8412",
+    "true_rel": 2,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q23",
+    "docid": "p7612",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q23",
+    "docid": "p10820",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p3100",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p2470",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p4425",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p11309",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p5746",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p5991",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p9060",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p4341",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q3",
+    "docid": "p2560",
+    "true_rel": 3,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q3",
+    "docid": "p875",
+    "true_rel": 3,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q41",
+    "docid": "p7230",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q41",
+    "docid": "p7695",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q41",
+    "docid": "p4081",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q41",
+    "docid": "p6370",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q41",
+    "docid": "p3770",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q41",
+    "docid": "p2123",
+    "true_rel": 2,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q41",
+    "docid": "p10070",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q41",
+    "docid": "p11451",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q41",
+    "docid": "p3348",
+    "true_rel": 1,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q41",
+    "docid": "p5465",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q17",
+    "docid": "p253",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q17",
+    "docid": "p1391",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q17",
+    "docid": "p3972",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q17",
+    "docid": "p3260",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q17",
+    "docid": "p8965",
+    "true_rel": 0,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q17",
+    "docid": "p1406",
+    "true_rel": 2,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q17",
+    "docid": "p4628",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q17",
+    "docid": "p1984",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q17",
+    "docid": "p8286",
+    "true_rel": 1,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q17",
+    "docid": "p3253",
+    "true_rel": 2,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q12",
+    "docid": "p6045",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q12",
+    "docid": "p2538",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q12",
+    "docid": "p531",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q12",
+    "docid": "p3637",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q12",
+    "docid": "p7780",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q12",
+    "docid": "p9188",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q12",
+    "docid": "p1156",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q12",
+    "docid": "p6093",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q12",
+    "docid": "p9456",
+    "true_rel": 2,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q12",
+    "docid": "p9063",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q39",
+    "docid": "p8864",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q39",
+    "docid": "p9211",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q39",
+    "docid": "p874",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q39",
+    "docid": "p2765",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q39",
+    "docid": "p8935",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q39",
+    "docid": "p737",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q39",
+    "docid": "p11496",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q39",
+    "docid": "p7527",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q39",
+    "docid": "p9452",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q39",
+    "docid": "p3609",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q20",
+    "docid": "p8625",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q20",
+    "docid": "p7888",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q20",
+    "docid": "p9410",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q20",
+    "docid": "p4093",
+    "true_rel": 0,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q20",
+    "docid": "p8473",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q20",
+    "docid": "p9598",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q20",
+    "docid": "p8080",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q20",
+    "docid": "p1266",
+    "true_rel": 1,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q20",
+    "docid": "p4861",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q20",
+    "docid": "p9019",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q42",
+    "docid": "p7176",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q42",
+    "docid": "p9845",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q42",
+    "docid": "p9136",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q42",
+    "docid": "p3281",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q42",
+    "docid": "p8099",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q42",
+    "docid": "p2003",
+    "true_rel": 3,
+    "llm_response": "3"
+  },
+  {
+    "qid": "q42",
+    "docid": "p9122",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q42",
+    "docid": "p6947",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q42",
+    "docid": "p8215",
+    "true_rel": 2,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q42",
+    "docid": "p10849",
+    "true_rel": 2,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q48",
+    "docid": "p6291",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q48",
+    "docid": "p9443",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q48",
+    "docid": "p848",
+    "true_rel": 0,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q48",
+    "docid": "p1579",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q48",
+    "docid": "p10113",
+    "true_rel": 0,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q48",
+    "docid": "p9950",
+    "true_rel": 3,
+    "llm_response": "2"
+  },
+  {
+    "qid": "q48",
+    "docid": "p3508",
+    "true_rel": 1,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q48",
+    "docid": "p5457",
+    "true_rel": 1,
+    "llm_response": "1"
+  },
+  {
+    "qid": "q48",
+    "docid": "p11575",
+    "true_rel": 3,
+    "llm_response": "0"
+  },
+  {
+    "qid": "q48",
+    "docid": "p1888",
+    "true_rel": 1,
+    "llm_response": "1"
+  }
+]

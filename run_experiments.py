@@ -1,17 +1,19 @@
-import os
 import re
 import json
 import time
-import random
 import logging
 import argparse
 from pathlib import Path
-from typing import Dict, List, Tuple, Iterable, Optional
+from typing import Dict, List, Optional
 
-import jsonlines
 from tqdm import tqdm
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
+
+from dotenv import load_dotenv
+
+# Load environment variables
+load_dotenv()
 
 # =============================
 # Configuration & Constants
@@ -21,14 +23,13 @@ PROJECT_ROOT = Path(__file__).parent
 DATA_DIR = PROJECT_ROOT / "data"
 
 # Model configuration
-LLM_MODEL_NAME = "gemini-1.5-flash-001"
+LLM_MODEL_NAME = "gemini-2.0-flash-exp"
 # Thomas et al. (2024)-inspired conservative decoding parameters
 LLM_PARAMS: Dict[str, object] = {
     "temperature": 0.0,
     "top_p": 1.0,
-    "frequency_penalty": 0.5,
-    "presence_penalty": 0.0,
-    "max_output_tokens": 10,
+    #"frequency_penalty": 0.5,
+    #"presence_penalty": 0.0,
 }
 
 # CLI choices
@@ -72,7 +73,7 @@ FEW_SHOT_EXAMPLES = (
 )
 
 # Human message template always supplies QUERY and DOCUMENT;
-# we keep human templates minimal and place most guidance in the system message.
+# to keep human templates minimal and place most guidance in the system message.
 PROMPT_LIBRARY: Dict[str, Dict[str, Dict[str, str]]] = {
     "BASIC": {
         "none": {
@@ -142,83 +143,14 @@ PROMPT_LIBRARY: Dict[str, Dict[str, Dict[str, str]]] = {
 # Data Loading
 # =============================
 
-def load_qrels(filepath: Path) -> Dict[str, List[Tuple[str, int]]]:
-    """Load qrels-like mapping from file of format: qid Q0 docid rel.
-
-    Returns: dict mapping qid -> list of (docid, rel)
-    """
-    qrels: Dict[str, List[Tuple[str, int]]] = {}
+def load_attack_dataset(filepath: Path) -> List[Dict]:
+    """Load pre-generated attack dataset from JSON file."""
     with open(filepath, "r", encoding="utf-8") as f:
-        for line in f:
-            parts = line.strip().split()
-            if len(parts) != 4:
-                continue
-            qid, _, docid, rel_str = parts
-            try:
-                rel = int(rel_str)
-            except ValueError:
-                continue
-            qrels.setdefault(qid, []).append((docid, rel))
-    return qrels
-
-
-def load_documents(filepath: Path) -> Dict[str, str]:
-    """Load documents from a jsonl file with fields: { 'docid': str, 'doc': str }"""
-    mapping: Dict[str, str] = {}
-    with jsonlines.open(str(filepath), mode="r") as reader:
-        for obj in reader:  # type: ignore[assignment]
-            docid = obj.get("docid")
-            doc = obj.get("doc")
-            if isinstance(docid, str) and isinstance(doc, str):
-                mapping[docid] = doc
-    return mapping
-
-
-def load_queries(filepath: Path) -> Dict[str, str]:
-    """Load queries from a TSV with lines: qid<TAB>query_text"""
-    mapping: Dict[str, str] = {}
-    with open(filepath, "r", encoding="utf-8") as f:
-        for line in f:
-            parts = line.strip().split("\t")
-            if len(parts) != 2:
-                continue
-            qid, qtext = parts
-            mapping[qid] = qtext
-    return mapping
+        return json.load(f)
 
 # =============================
-# Attack Logic
+# Attack Logic (No longer needed - using pre-generated datasets)
 # =============================
-
-def _attack_prepend(doc_text: str, query_text: str) -> str:
-    return f"{query_text} {doc_text}"
-
-
-def _attack_append(doc_text: str, query_text: str) -> str:
-    return f"{doc_text} {query_text}"
-
-
-def _attack_scatter(doc_text: str, query_text: str, seed: Optional[int] = None) -> str:
-    rng = random.Random(seed)
-    doc_tokens = doc_text.split()
-    query_tokens = query_text.split()
-    # Insert each query token at a random position in the document tokens
-    for token in query_tokens:
-        pos = rng.randint(0, max(0, len(doc_tokens)))
-        doc_tokens.insert(pos, token)
-    return " ".join(doc_tokens)
-
-
-def apply_attack(attack_type: str, doc_text: str, query_text: str, seed: Optional[int] = None) -> str:
-    if attack_type == "none":
-        return doc_text
-    if attack_type == "prepend":
-        return _attack_prepend(doc_text, query_text)
-    if attack_type == "append":
-        return _attack_append(doc_text, query_text)
-    if attack_type == "scatter":
-        return _attack_scatter(doc_text, query_text, seed=seed)
-    raise ValueError(f"Unknown attack_type: {attack_type}")
 
 
 # =============================
@@ -252,22 +184,22 @@ def main() -> None:
     parser.add_argument("--mitigation_type", required=True, choices=MITIGATION_TYPES)
     parser.add_argument("--output_dir", default=str(PROJECT_ROOT / "results"))
     parser.add_argument("--limit", type=int, default=None, help="Limit number of (qid, docid) pairs for quick runs")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed for scatter attack determinism")
+    parser.add_argument("--seed", type=int, default=42, help="Random seed (used during dataset creation, not runtime)")
     args = parser.parse_args()
 
     # Logging
     logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 
     # Data paths
-    qrels_path = DATA_DIR / "llm4eval_test_qrel_2024.txt"
-    queries_path = DATA_DIR / "llm4eval_query_2024.txt"
-    docs_path = DATA_DIR / "llm4eval_document_2024.jsonl"
+    attack_datasets_dir = PROJECT_ROOT / "attack_datasets"
+    attack_dataset_path = attack_datasets_dir / f"{args.attack_type}_attacks.json"
 
-    # Load data
-    logging.info("Loading data...")
-    qrels = load_qrels(qrels_path)
-    queries = load_queries(queries_path)
-    documents = load_documents(docs_path)
+    # Load attack dataset
+    logging.info(f"Loading {args.attack_type} attack dataset...")
+    if not attack_dataset_path.exists():
+        raise FileNotFoundError(f"Attack dataset not found: {attack_dataset_path}. Run create_attack_datasets.py first.")
+    
+    attack_dataset = load_attack_dataset(attack_dataset_path)
 
     # Initialize LLM
     logging.info("Initializing LLM...")
@@ -284,30 +216,23 @@ def main() -> None:
 
     results: List[Dict[str, object]] = []
 
-    # Iterate (qid, docid, rel)
-    logging.info("Running experiments...")
-    all_items: List[Tuple[str, str, int]] = []
-    for qid, pairs in qrels.items():
-        for docid, rel in pairs:
-            all_items.append((qid, docid, rel))
-
+    # Apply limit if specified
     if args.limit is not None:
-        all_items = all_items[: max(0, args.limit)]
+        attack_dataset = attack_dataset[:max(0, args.limit)]
 
     # Retry parameters
     max_retries = 2
     delay_seconds = 1.0
 
-    for qid, docid, rel in tqdm(all_items, desc="Evaluating", unit="pair"):
-        query_text = queries.get(qid, f"Query text for {qid}")
-        doc_text = documents.get(docid, "")
-        if not doc_text:
-            logging.warning(f"Missing document text for docid={docid}; skipping.")
-            continue
+    logging.info("Running experiments...")
+    for item in tqdm(attack_dataset, desc="Evaluating", unit="pair"):
+        qid = item["qid"]
+        docid = item["docid"]
+        query_text = item["query_text"]
+        attacked_doc_text = item["attacked_doc_text"]
+        ground_truth_score = item["ground_truth_score"]
 
-        attacked_doc = apply_attack(args.attack_type, doc_text, query_text, seed=args.seed)
-
-        messages = prompt.invoke({"query": query_text, "document": attacked_doc})
+        messages = prompt.invoke({"query": query_text, "document": attacked_doc_text})
 
         attempt = 0
         response_text: str = ""
@@ -331,7 +256,7 @@ def main() -> None:
         results.append({
             "qid": qid,
             "docid": docid,
-            "ground_truth_score": rel,
+            "ground_truth_score": ground_truth_score,
             "prompt_type": args.prompt_type,
             "attack_type": args.attack_type,
             "mitigation_type": args.mitigation_type,

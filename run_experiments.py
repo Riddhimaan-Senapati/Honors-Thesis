@@ -7,7 +7,8 @@ from pathlib import Path
 from typing import Dict, List, Optional
 
 from tqdm import tqdm
-from langchain_google_genai import ChatGoogleGenerativeAI
+#from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 
 from dotenv import load_dotenv
@@ -149,11 +150,6 @@ def load_attack_dataset(filepath: Path) -> List[Dict]:
         return json.load(f)
 
 # =============================
-# Attack Logic (No longer needed - using pre-generated datasets)
-# =============================
-
-
-# =============================
 # Main Orchestration
 # =============================
 
@@ -184,7 +180,6 @@ def main() -> None:
     parser.add_argument("--mitigation_type", required=True, choices=MITIGATION_TYPES)
     parser.add_argument("--output_dir", default=str(PROJECT_ROOT / "results"))
     parser.add_argument("--limit", type=int, default=None, help="Limit number of (qid, docid) pairs for quick runs")
-    parser.add_argument("--seed", type=int, default=42, help="Random seed (used during dataset creation, not runtime)")
     args = parser.parse_args()
 
     # Logging
@@ -203,7 +198,8 @@ def main() -> None:
 
     # Initialize LLM
     logging.info("Initializing LLM...")
-    llm = ChatGoogleGenerativeAI(model=LLM_MODEL_NAME, **LLM_PARAMS)
+    #llm = ChatGoogleGenerativeAI(model=LLM_MODEL_NAME, **LLM_PARAMS)
+    llm = ChatOllama(model="llama2", **LLM_PARAMS)
 
     # Build prompt
     prompt = build_prompt(args.prompt_type, args.mitigation_type)

@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 """
 Create attack datasets for LLM query injection experiments.
 
@@ -24,6 +23,8 @@ from typing import Dict, List, Tuple, Optional
 
 import jsonlines
 
+# seed vale
+SEED = 42
 
 def load_qrels(filepath: Path) -> Dict[str, List[Tuple[str, int]]]:
     """Load qrels-like mapping from file of format: qid 0 docid rel."""
@@ -90,7 +91,7 @@ def apply_attack(attack_type: str, doc_text: str, query_text: str, seed: Optiona
 
 def create_attack_dataset(attack_type: str, qrels: Dict[str, List[Tuple[str, int]]], 
                          queries: Dict[str, str], documents: Dict[str, str], 
-                         seed: int = 42) -> List[Dict]:
+                         seed: int = SEED) -> List[Dict]:
     """Create dataset for a specific attack type."""
     dataset = []
     

@@ -24,7 +24,10 @@ PROJECT_ROOT = Path(__file__).parent
 DATA_DIR = PROJECT_ROOT / "data"
 
 # Model configuration
-LLM_MODEL_NAME = "gemini-2.0-flash-exp"
+# Gemini model name
+#LLM_MODEL_NAME = "gemini-2.0-flash-exp"
+# Ollama model name
+LLM_MODEL_NAME = "qwen3:0.6b"
 # Thomas et al. (2024)-inspired conservative decoding parameters
 LLM_PARAMS: Dict[str, object] = {
     "temperature": 0.0,
@@ -199,7 +202,7 @@ def main() -> None:
     # Initialize LLM
     logging.info("Initializing LLM...")
     #llm = ChatGoogleGenerativeAI(model=LLM_MODEL_NAME, **LLM_PARAMS)
-    llm = ChatOllama(model="llama2", **LLM_PARAMS)
+    llm = ChatOllama(model=LLM_MODEL_NAME, **LLM_PARAMS)
 
     # Build prompt
     prompt = build_prompt(args.prompt_type, args.mitigation_type)

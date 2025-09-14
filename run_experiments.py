@@ -28,8 +28,8 @@ DATA_DIR = PROJECT_ROOT / "data"
 # Gemini model name
 #LLM_MODEL_NAME = "gemini-2.0-flash-exp"
 # Ollama model name (first one is for testing on my local computer)
-#LLM_MODEL_NAME = "qwen3:0.6b" 
-LLM_MODEL_NAME = "gpt-oss:20b"
+#LLM_MODEL_NAME = "qwen3:0.6b"
+LLM_MODEL_NAME = "gpt-oss:20b" 
 # Thomas et al. (2024)-inspired conservative decoding parameters
 LLM_PARAMS: Dict[str, object] = {
     "temperature": 0.0,

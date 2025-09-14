@@ -5,6 +5,7 @@ import logging
 import argparse
 from pathlib import Path
 from typing import Dict, List, Optional
+from datetime import datetime
 
 from tqdm import tqdm
 #from langchain_google_genai import ChatGoogleGenerativeAI
@@ -26,8 +27,9 @@ DATA_DIR = PROJECT_ROOT / "data"
 # Model configuration
 # Gemini model name
 #LLM_MODEL_NAME = "gemini-2.0-flash-exp"
-# Ollama model name
-LLM_MODEL_NAME = "qwen3:0.6b"
+# Ollama model name (first one is for testing on my local computer)
+#LLM_MODEL_NAME = "qwen3:0.6b" 
+LLM_MODEL_NAME = "gpt-oss:20b"
 # Thomas et al. (2024)-inspired conservative decoding parameters
 LLM_PARAMS: Dict[str, object] = {
     "temperature": 0.0,
@@ -223,6 +225,10 @@ def main() -> None:
     max_retries = 2
     delay_seconds = 1.0
 
+    # Start timing
+    start_time = time.time()
+    start_datetime = datetime.now().isoformat()
+    
     logging.info("Running experiments...")
     for item in tqdm(attack_dataset, desc="Evaluating", unit="pair"):
         qid = item["qid"]
@@ -246,7 +252,7 @@ def main() -> None:
                 if attempt > max_retries:
                     response_text = ""
                     break
-                time.sleep(delay_seconds)
+                #time.sleep(delay_seconds)
 
         llm_score: Optional[int] = parse_score_from_response(response_text)
         if llm_score is None:
@@ -263,13 +269,44 @@ def main() -> None:
             "raw_response": response_text,
         })
 
-        time.sleep(1.0)
+        #time.sleep(1.0)
+
+    # End timing
+    end_time = time.time()
+    end_datetime = datetime.now().isoformat()
+    total_duration = end_time - start_time
+    
+    # Calculate timing statistics
+    timing_info = {
+        "start_time": start_datetime,
+        "end_time": end_datetime,
+        "total_duration_seconds": round(total_duration, 2),
+        "total_duration_minutes": round(total_duration / 60, 2),
+        "total_pairs_processed": len(results),
+        "average_time_per_pair_seconds": round(total_duration / len(results), 3) if results else 0
+    }
+    
+    # Create final results with timing info
+    final_results = {
+        "experiment_config": {
+            "prompt_type": args.prompt_type,
+            "attack_type": args.attack_type,
+            "mitigation_type": args.mitigation_type,
+            "limit": args.limit,
+            "model_name": LLM_MODEL_NAME
+        },
+        "timing": timing_info,
+        "results": results
+    }
 
     # Save results
     with open(output_path, "w", encoding="utf-8") as f:
-        json.dump(results, f, ensure_ascii=False, indent=2)
+        json.dump(final_results, f, ensure_ascii=False, indent=2)
 
     print(f"Saved results to: {output_path}")
+    print(f"Total duration: {timing_info['total_duration_minutes']:.2f} minutes ({timing_info['total_duration_seconds']:.2f} seconds)")
+    print(f"Processed {timing_info['total_pairs_processed']} pairs")
+    print(f"Average time per pair: {timing_info['average_time_per_pair_seconds']:.3f} seconds")
 
 
 if __name__ == "__main__":

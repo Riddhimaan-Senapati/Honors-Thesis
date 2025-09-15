@@ -1,9 +1,9 @@
 #!/bin/bash
 
 #SBATCH -p gpu-preempt  # Submit job to the gpu-preempt partition
-#SBATCH -t 14:30:00     # Set maximum job time to 14: 30 hours
+#SBATCH -t 48:00:00     # Set maximum job time to 48 hours 
 #SBATCH --gpus=1        # Request 1 GPU
-#SBATCH --output=gpu_job_%j.out  # Name the output file with the job ID
+#SBATCH --output=gpu_job_BASIC_append_none.out  # Name the output file with the job ID and experiment choices
 
 # Pull Ollama docker image
 apptainer pull docker://ollama/ollama
@@ -21,5 +21,5 @@ export OLLAMA_MODELS=/home/rsenapati_umass_edu/.ollama/models/
 source /work/pi_allan_umass_edu/rsenapati/.venv/bin/activate
 
 # run the python script
-python /work/pi_allan_umass_edu/rsenapati/run_experiments.py --prompt_type BASIC --attack_type none --mitigation_type none --output_dir /work/pi_allan_umass_edu/rsenapati/data 
+python /work/pi_allan_umass_edu/rsenapati/run_experiments.py --prompt_type BASIC --attack_type append --mitigation_type none --output_dir /work/pi_allan_umass_edu/rsenapati/data
 

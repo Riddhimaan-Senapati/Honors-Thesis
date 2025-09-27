@@ -101,44 +101,44 @@ PROMPT_LIBRARY: Dict[str, Dict[str, Dict[str, str]]] = {
     "RATIONALE": {
         "none": {
             "system_message": BASIC_SYSTEM +
-            "\nFirst, provide a step-by-step rationale for your score, then on a new line provide the final score as a single integer.",
+            "\nFirst, provide the final score as a single integer, then on a new line provide a step-by-step rationale for your score.",
             "human_template": "QUERY:{query}\nDOCUMENT:{document}",
         },
         "user_prompt_hardening": {
             "system_message": f"{HARDENING_WARNING}\n\n" + BASIC_SYSTEM +
-            "\nFirst, provide a step-by-step rationale for your score, then on a new line provide the final score as a single integer.",
+            "\nFirst, provide the final score as a single integer, then on a new line provide a step-by-step rationale for your score.",
             "human_template": "QUERY:{query}\nDOCUMENT:{document}",
         },
         "system_prompt_hardening": {
             "system_message": f"{SYSTEM_HARDENING_PERSONA}\n\n" + BASIC_SYSTEM +
-            "\nFirst, provide a step-by-step rationale for your score, then on a new line provide the final score as a single integer.",
+            "\nFirst, provide the final score as a single integer, then on a new line provide a step-by-step rationale for your score.",
             "human_template": "QUERY:{query}\nDOCUMENT:{document}",
         },
         "few_shot": {
             "system_message": f"{FEW_SHOT_EXAMPLES}\n\n" + BASIC_SYSTEM +
-            "\nFirst, provide a step-by-step rationale for your score, then on a new line provide the final score as a single integer.",
+            "\nFirst, provide the final score as a single integer, then on a new line provide a step-by-step rationale for your score.",
             "human_template": "QUERY:{query}\nDOCUMENT:{document}",
         },
     },
     "UTILITY": {
         "none": {
             "system_message": BASIC_SYSTEM +
-            "\nAdditionally, assess how useful the answer would be for a report.",
+            "\nFirst, provide the final score as a single integer, then on a new line assess how useful the answer would be for a report.",
             "human_template": "QUERY:{query}\nDOCUMENT:{document}",
         },
         "user_prompt_hardening": {
             "system_message": f"{HARDENING_WARNING}\n\n" + BASIC_SYSTEM +
-            "\nAdditionally, assess how useful the answer would be for a report.",
+            "\nFirst, provide the final score as a single integer, then on a new line assess how useful the answer would be for a report.",
             "human_template": "QUERY:{query}\nDOCUMENT:{document}",
         },
         "system_prompt_hardening": {
             "system_message": f"{SYSTEM_HARDENING_PERSONA}\n\n" + BASIC_SYSTEM +
-            "\nAdditionally, assess how useful the answer would be for a report.",
+            "\nFirst, provide the final score as a single integer, then on a new line assess how useful the answer would be for a report.",
             "human_template": "QUERY:{query}\nDOCUMENT:{document}",
         },
         "few_shot": {
             "system_message": f"{FEW_SHOT_EXAMPLES}\n\n" + BASIC_SYSTEM +
-            "\nAdditionally, assess how useful the answer would be for a report.",
+            "\nFirst, provide the final score as a single integer, then on a new line assess how useful the answer would be for a report.",
             "human_template": "QUERY:{query}\nDOCUMENT:{document}",
         },
     },
@@ -168,7 +168,11 @@ def build_prompt(prompt_type: str, mitigation_type: str) -> ChatPromptTemplate:
 
 
 def parse_score_from_response(text: str) -> Optional[int]:
-    match = re.search(r"\b([0-3])\b", text)
+    # Remove <think>...</think> tags and their content. Don't need the LLM's internal reasoning.
+    text_cleaned = re.sub(r'<think>.*?</think>', '', text, flags=re.DOTALL)
+    
+    # Look for the first occurrence of a score (0-3) in the cleaned text
+    match = re.search(r'\b([0-3])\b', text_cleaned)
     if not match:
         return None
     try:

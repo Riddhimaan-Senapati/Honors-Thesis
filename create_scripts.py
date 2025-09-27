@@ -9,8 +9,9 @@ MITIGATION_TYPES = ["none", "user_prompt_hardening", "system_prompt_hardening", 
 
 BASELINE_TEMPLATE = """#!/bin/bash
 
-#SBATCH -p gpu-preempt  # Submit job to the gpu-preempt partition
-#SBATCH -t 48:00:00     # Set maximum job time to 48 hours 
+#SBATCH -p gpu  # Submit job to the gpu partition
+#SBATCH -t 48:00:00     # Set maximum job time to 2 days 
+#SBATCH --mail-type=TIME_LIMIT_80 # Email me if time exceed 80 percent of the allocated time or 38.4 hours
 #SBATCH --gpus=1        # Request 1 GPU
 #SBATCH --output=gpu_job_{prompt}_{attack}_{mitigation}.out  # Name the output file with the job ID and experiment choices
 
@@ -44,9 +45,10 @@ def main() -> None:
     for prompt in PROMPT_TYPES:
         for attack in ATTACK_TYPES:
             for mitigation in MITIGATION_TYPES:
-                # skip baseline script
+                """# skip baseline script
                 if prompt == "BASIC" and attack == "none" and mitigation == "none":
                     continue
+                """
                 script_name = f"run_{prompt}_{attack}_{mitigation}.sh"
                 script_path = run_scripts_dir / script_name
                 content = BASELINE_TEMPLATE.format(prompt=prompt, attack=attack, mitigation=mitigation)

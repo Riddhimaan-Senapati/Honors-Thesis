@@ -1,7 +1,8 @@
 #!/bin/bash
 
-#SBATCH -p gpu-preempt  # Submit job to the gpu-preempt partition
-#SBATCH -t 48:00:00     # Set maximum job time to 48 hours 
+#SBATCH -p gpu  # Submit job to the gpu partition
+#SBATCH -t 48:00:00     # Set maximum job time to 2 days 
+#SBATCH --mail-type=TIME_LIMIT_80 # Email me if time exceed 80 percent of the allocated time or 38.4 hours
 #SBATCH --gpus=1        # Request 1 GPU
 #SBATCH --output=gpu_job_RATIONALE_none_system_prompt_hardening.out  # Name the output file with the job ID and experiment choices
 

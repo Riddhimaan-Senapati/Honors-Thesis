@@ -11,7 +11,7 @@ SCRIPT_PATTERN = re.compile(r"^run_(?P<prompt>[^_]+)_(?P<attack>[^_]+)_(?P<mitig
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Find experiments without successful result files and list scripts to re-run.")
     parser.add_argument("--scripts_dir", default="run_scripts", help="Directory containing generated .sh run scripts")
-    parser.add_argument("--results_dir", default="data/qwen3_0.6b_data", help="Directory containing results_*.json files")
+    parser.add_argument("--results_dir", default="data/gemma3_1b", help="Directory containing results_*.json files")
     return parser.parse_args()
 
 

@@ -5,6 +5,11 @@ import re
 from glob import glob
 from typing import List, Tuple, Optional
 
+#CSV_FILENAME = 'qwen3_0.6b_results.csv'
+CSV_FILENAME = 'gemma3_1b_results.csv'
+#DATA_DIR = 'data/qwen3_0.6b'
+DATA_DIR = 'data/gemma3_1b'
+
 def calculate_mae(ground_truth: List[int], predictions: List[Optional[int]]) -> float:
     """Calculate MAE, filtering out None predictions (failed LLM calls)."""
     valid_pairs = [(gt, pred) for gt, pred in zip(ground_truth, predictions) if pred is not None]
@@ -67,7 +72,7 @@ def parse_filename(filename: str) -> Tuple[str, str, str]:
     return "unknown", "unknown", "unknown"
 
 def main():
-    folder = 'data/qwen3_0.6b'
+    folder = DATA_DIR
     json_files = glob(os.path.join(folder, '*.json'))
     
     if not json_files:
@@ -78,14 +83,35 @@ def main():
     print("=" * 80)
     
     # Prepare CSV output
-    csv_filename = 'qwen3_0.6b_results.csv'
+    csv_filename = CSV_FILENAME
     csv_data = []
+    
+    # Store baseline metrics (BASIC, none, none)
+    baseline_metrics = None
     
     total_valid = 0
     total_gt_zero = 0
     total_gt_positive = 0
     
+    # First pass: find and process baseline first
+    baseline_file = None
+    other_files = []
+    
     for file in sorted(json_files):
+        filename = os.path.basename(file)
+        prompt_type, attack_type, mitigation_type = parse_filename(filename)
+        if prompt_type == 'BASIC' and attack_type == 'none' and mitigation_type == 'none':
+            baseline_file = file
+        else:
+            other_files.append(file)
+    
+    # Process baseline first, then others
+    files_to_process = []
+    if baseline_file:
+        files_to_process.append(baseline_file)
+    files_to_process.extend(other_files)
+    
+    for file in files_to_process:
         try:
             overall_mae, gt_zero_mae, gt_positive_mae, overall_jer, gt_zero_jer, gt_positive_jer, valid_count, gt_zero_count, gt_positive_count, total_count = process_file(file)
             
@@ -105,6 +131,44 @@ def main():
             if failed_count > 0:
                 print(f"  Failed experiments (no LLM score): {failed_count}")
             
+            # Check if this is the baseline (BASIC, none, none)
+            is_baseline = (prompt_type == 'BASIC' and attack_type == 'none' and mitigation_type == 'none')
+            
+            # Store baseline metrics for delta calculations
+            if is_baseline:
+                baseline_metrics = {
+                    'overall_mae': overall_mae,
+                    'mae_gt_zero': gt_zero_mae,
+                    'mae_gt_positive': gt_positive_mae,
+                    'overall_jer': overall_jer,
+                    'jer_gt_zero': gt_zero_jer,
+                    'jer_gt_positive': gt_positive_jer
+                }
+                print(f"  *** BASELINE EXPERIMENT ***")
+            
+            # Calculate deltas if baseline exists
+            delta_overall_mae = 'NaN'
+            delta_mae_gt_zero = 'NaN'
+            delta_mae_gt_positive = 'NaN'
+            delta_overall_jer = 'NaN'
+            delta_jer_gt_zero = 'NaN'
+            delta_jer_gt_positive = 'NaN'
+            
+            if baseline_metrics and not is_baseline:
+                # Calculate deltas (current - baseline)
+                if not (overall_mae != overall_mae) and not (baseline_metrics['overall_mae'] != baseline_metrics['overall_mae']):
+                    delta_overall_mae = round(overall_mae - baseline_metrics['overall_mae'], 4)
+                if not (gt_zero_mae != gt_zero_mae) and not (baseline_metrics['mae_gt_zero'] != baseline_metrics['mae_gt_zero']):
+                    delta_mae_gt_zero = round(gt_zero_mae - baseline_metrics['mae_gt_zero'], 4)
+                if not (gt_positive_mae != gt_positive_mae) and not (baseline_metrics['mae_gt_positive'] != baseline_metrics['mae_gt_positive']):
+                    delta_mae_gt_positive = round(gt_positive_mae - baseline_metrics['mae_gt_positive'], 4)
+                if not (overall_jer != overall_jer) and not (baseline_metrics['overall_jer'] != baseline_metrics['overall_jer']):
+                    delta_overall_jer = round(overall_jer - baseline_metrics['overall_jer'], 2)
+                if not (gt_zero_jer != gt_zero_jer) and not (baseline_metrics['jer_gt_zero'] != baseline_metrics['jer_gt_zero']):
+                    delta_jer_gt_zero = round(gt_zero_jer - baseline_metrics['jer_gt_zero'], 2)
+                if not (gt_positive_jer != gt_positive_jer) and not (baseline_metrics['jer_gt_positive'] != baseline_metrics['jer_gt_positive']):
+                    delta_jer_gt_positive = round(gt_positive_jer - baseline_metrics['jer_gt_positive'], 2)
+            
             # Add to CSV data
             csv_data.append({
                 'filename': filename,
@@ -117,6 +181,12 @@ def main():
                 'overall_jer': round(overall_jer, 2) if not (overall_jer != overall_jer) else 'NaN',
                 'jer_gt_zero': round(gt_zero_jer, 2) if not (gt_zero_jer != gt_zero_jer) else 'NaN',
                 'jer_gt_positive': round(gt_positive_jer, 2) if not (gt_positive_jer != gt_positive_jer) else 'NaN',
+                'delta_overall_mae': delta_overall_mae,
+                'delta_mae_gt_zero': delta_mae_gt_zero,
+                'delta_mae_gt_positive': delta_mae_gt_positive,
+                'delta_overall_jer': delta_overall_jer,
+                'delta_jer_gt_zero': delta_jer_gt_zero,
+                'delta_jer_gt_positive': delta_jer_gt_positive,
                 'valid_experiments': valid_count,
                 'gt_zero_count': gt_zero_count,
                 'gt_positive_count': gt_positive_count,
@@ -143,6 +213,8 @@ def main():
             fieldnames = ['filename', 'prompt_type', 'attack_type', 'mitigation_type', 
                          'overall_mae', 'mae_gt_zero', 'mae_gt_positive', 
                          'overall_jer', 'jer_gt_zero', 'jer_gt_positive',
+                         'delta_overall_mae', 'delta_mae_gt_zero', 'delta_mae_gt_positive',
+                         'delta_overall_jer', 'delta_jer_gt_zero', 'delta_jer_gt_positive',
                          'valid_experiments', 'gt_zero_count', 'gt_positive_count', 
                          'failed_experiments', 'total_experiments']
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)

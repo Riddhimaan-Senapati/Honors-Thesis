@@ -6,9 +6,9 @@ import argparse
 from pathlib import Path
 from typing import Dict, List, Optional
 from datetime import datetime
+import os
 
 from tqdm import tqdm
-#from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_ollama import ChatOllama
 from langchain_core.prompts import ChatPromptTemplate
 
@@ -25,11 +25,15 @@ PROJECT_ROOT = Path(__file__).parent
 DATA_DIR = PROJECT_ROOT / "data"
 
 # Model configuration
-# Gemini model name
-#LLM_MODEL_NAME = "gemini-2.0-flash-exp"
-# Ollama model name (first one is for testing on my local computer)
-LLM_MODEL_NAME = "gemma3:1b" 
-# Thomas et al. (2024)-inspired conservative decoding parameters
+MODEL_NAME = os.getenv('OLLAMA_MODEL_NAME')
+
+# Ollama model name
+LLM_MODEL_NAME = MODEL_NAME 
+
+"""Thomas et al. (2024)-inspired conservative decoding parameters.
+ Note that frequency and presence penalties are not used in this experiment 
+ because these were not supported by the models"""
+
 LLM_PARAMS: Dict[str, object] = {
     "temperature": 0.0,
     "top_p": 1.0,

@@ -9,7 +9,7 @@ import os
 import json
 from glob import glob
 from pathlib import Path
-from typing import Dict, List, Set, Tuple
+from typing import Dict, Set, Tuple
 from collections import defaultdict
 
 # =============================
@@ -194,7 +194,7 @@ def main():
         json.dump(output_data, f, ensure_ascii=False, indent=2)
     
     print(f"\nFailed pairs saved to: {output_file}")
-    print(f"\nYou can use this file to filter out inconsistent pairs from your analysis.")
+    print("\nYou can use this file to filter out inconsistent pairs from your analysis.")
 
 
 if __name__ == "__main__":

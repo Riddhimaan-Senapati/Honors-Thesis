@@ -1,18 +1,19 @@
-import argparse
 import json
+import os
 import re
 from pathlib import Path
 from typing import List, Tuple
+from dotenv import load_dotenv
 
+load_dotenv()
 
+# Set model name from environment variables
+MODEL_NAME = os.getenv('MODEL_NAME')
+
+# Set script and results directories
+SCRIPTS_DIR = 'run_scripts'
+RESULTS_DIR = f'data/{MODEL_NAME}'
 SCRIPT_PATTERN = re.compile(r"^run_(?P<prompt>[^_]+)_(?P<attack>[^_]+)_(?P<mitigation>[^.]+)\.sh$")
-
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Find experiments without successful result files and list scripts to re-run.")
-    parser.add_argument("--scripts_dir", default="run_scripts", help="Directory containing generated .sh run scripts")
-    parser.add_argument("--results_dir", default="data/gemma3_1b", help="Directory containing results_*.json files")
-    return parser.parse_args()
 
 
 def expected_result_filename(prompt: str, attack: str, mitigation: str) -> str:
@@ -53,9 +54,8 @@ def collect_scripts(scripts_dir: Path) -> List[Tuple[Path, str, str, str]]:
 
 
 def main() -> None:
-    args = parse_args()
-    scripts_dir = Path(args.scripts_dir)
-    results_dir = Path(args.results_dir)
+    scripts_dir = Path(SCRIPTS_DIR)
+    results_dir = Path(RESULTS_DIR)
 
     if not scripts_dir.exists():
         raise FileNotFoundError(f"Scripts directory not found: {scripts_dir}")

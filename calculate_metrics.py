@@ -4,11 +4,16 @@ import csv
 import re
 from glob import glob
 from typing import List, Tuple, Optional, Set
+from dotenv import load_dotenv
 
-CSV_FILENAME = 'qwen3_0.6b_results.csv'
-#CSV_FILENAME = 'gemma3_1b_results.csv'
-DATA_DIR = 'data/qwen3_0.6b'
-#DATA_DIR = 'data/gemma3_1b'
+load_dotenv()
+
+# Set model name from environment variables
+MODEL_NAME = os.getenv('MODEL_NAME')
+
+# Set CSV filename and data directory
+CSV_FILENAME = f'{MODEL_NAME}_results.csv'
+DATA_DIR = f'data/{MODEL_NAME}'
 FAILED_PAIRS_FILES = ['gemma3_1b_failed_pairs.json', 'qwen3_0.6b_failed_pairs.json']
 
 def calculate_mae(ground_truth: List[int], predictions: List[Optional[int]]) -> float:
@@ -127,7 +132,7 @@ def main():
     print("=" * 80)
     
     # Load failed pairs to exclude (union across all files)
-    print(f"\nLoading failed pairs from multiple files:")
+    print("\nLoading failed pairs from multiple files:")
     excluded_pairs = load_failed_pairs(FAILED_PAIRS_FILES)
     print(f"\nExcluding {len(excluded_pairs)} unique QID-document pairs (union across all files)")
     print("=" * 80)
@@ -198,7 +203,7 @@ def main():
                     'jer_gt_zero': gt_zero_jer,
                     'jer_gt_positive': gt_positive_jer
                 }
-                print(f"  *** BASELINE EXPERIMENT ***")
+                print("  *** BASELINE EXPERIMENT ***")
             
             # Calculate deltas if baseline exists
             delta_overall_mae = 'NaN'

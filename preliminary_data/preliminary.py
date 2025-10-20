@@ -99,7 +99,7 @@ for qid, doclist in list(test_queries.items()):
             })
         except Exception as e:
             print(f"Error with QID {qid}, DocID {docid}: {e}")
-    print(f"Cooldown: Waiting 60 seconds before next query...")
+    print("Cooldown: Waiting 60 seconds before next query...")
     time.sleep(60)
 
 # save results to a file

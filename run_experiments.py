@@ -25,10 +25,10 @@ PROJECT_ROOT = Path(__file__).parent
 DATA_DIR = PROJECT_ROOT / "data"
 
 # Model configuration
-MODEL_NAME = os.getenv('OLLAMA_MODEL_NAME')
+MODEL_NAME = os.getenv('MODEL_NAME')
 
 # Ollama model name
-LLM_MODEL_NAME = MODEL_NAME 
+LLM_MODEL_NAME = MODEL_NAME.replace("_",":")
 
 """Thomas et al. (2024)-inspired conservative decoding parameters.
  Note that frequency and presence penalties are not used in this experiment 
@@ -210,7 +210,6 @@ def main() -> None:
 
     # Initialize LLM
     logging.info("Initializing LLM...")
-    #llm = ChatGoogleGenerativeAI(model=LLM_MODEL_NAME, **LLM_PARAMS)
     llm = ChatOllama(model=LLM_MODEL_NAME, **LLM_PARAMS)
 
     # Build prompt
@@ -230,7 +229,6 @@ def main() -> None:
 
     # Retry parameters
     max_retries = 2
-    delay_seconds = 1.0
 
     # Start timing
     start_time = time.time()
@@ -259,7 +257,6 @@ def main() -> None:
                 if attempt > max_retries:
                     response_text = ""
                     break
-                #time.sleep(delay_seconds)
 
         llm_score: Optional[int] = parse_score_from_response(response_text)
         if llm_score is None:
@@ -276,7 +273,6 @@ def main() -> None:
             "raw_response": response_text,
         })
 
-        #time.sleep(1.0)
 
     # End timing
     end_time = time.time()

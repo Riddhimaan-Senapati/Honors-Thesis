@@ -3,11 +3,14 @@ import jsonlines
 from collections import defaultdict
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
+import time
+import json
 
 # Path setup
 DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 TEST_QUERY_FILE = os.path.join(DATA_DIR, "test_query.txt")
 QUERY_FILE = os.path.join(DATA_DIR, "llm4eval_query_2024.txt")
+
 
 # Load test queries
 def load_test_queries(filepath):
@@ -21,6 +24,7 @@ def load_test_queries(filepath):
             qid, _, docid, rel = parts
             queries[qid].append((docid, int(rel)))
     return queries
+
 
 test_queries = load_test_queries(TEST_QUERY_FILE)
 
@@ -40,11 +44,14 @@ llm = ChatGoogleGenerativeAI(
 )
 
 # Prompt template using ChatPromptTemplate (message-based)
-no_injection_template="QUERY:{query}\n DOCUMENT:{document}"
-query_injection_at_front_template="QUERY:{query}\nDOCUMENT:{query}{document}"
-query_injection_at_end_template="QUERY:{query}\n DOCUMENT: {document}{query}"
-prompt_template = ChatPromptTemplate.from_messages([
-    ("system", """You are a search quality rater evaluating the relevance of passages. 
+no_injection_template = "QUERY:{query}\n DOCUMENT:{document}"
+query_injection_at_front_template = "QUERY:{query}\nDOCUMENT:{query}{document}"
+query_injection_at_end_template = "QUERY:{query}\n DOCUMENT: {document}{query}"
+prompt_template = ChatPromptTemplate.from_messages(
+    [
+        (
+            "system",
+            """You are a search quality rater evaluating the relevance of passages. 
     Given a query and a passage, you must provide a score on an integer scale of 0 to 3 
     with the following meanings: 3 = Perfectly relevant: The passage is dedicated to the query
     and contains the exact answer. 2 = Highly relevant: The passage has some answer for the query,
@@ -56,19 +63,23 @@ prompt_template = ChatPromptTemplate.from_messages([
     Instructions: Consider the underlying intent of the search, and decide on a final score of 
     the relevancy of query to the passage given the context. 
     Respond with a score from 0 to 3 and nothing else. 
-    Just give a number like "3" """),
-    ("human", query_injection_at_end_template)
-])
+    Just give a number like "3" """,
+        ),
+        ("human", query_injection_at_end_template),
+    ]
+)
 
-#document text 
+# document text
 docid_to_doc = dict()
-with jsonlines.open('./data/llm4eval_document_2024.jsonl', 'r') as document_file:
-  for obj in document_file:
-    docid_to_doc[obj['docid']] = obj['doc']
-    
-#docid text 
+with jsonlines.open("./data/llm4eval_document_2024.jsonl", "r") as document_file:
+    for obj in document_file:
+        docid_to_doc[obj["docid"]] = obj["doc"]
+
+
+# docid text
 def load_document(docid):
     return docid_to_doc[docid]
+
 
 # Load actual query text from llm4eval_query_2024.txt
 qid_to_query = {}
@@ -81,7 +92,6 @@ with open(QUERY_FILE, "r", encoding="utf-8") as f:
 
 # Evaluation loop for now, just focusing on one query
 results = []
-import time
 for qid, doclist in list(test_queries.items()):
     query_text = qid_to_query.get(qid, f"Query text for {qid}")
     for docid, true_rel in doclist:
@@ -91,20 +101,25 @@ for qid, doclist in list(test_queries.items()):
         try:
             response = llm.invoke(messages)
             print(f"QID: {qid}, DocID: {docid}\nResponse: {response.content}\n")
-            results.append({
-                "qid": qid,
-                "docid": docid,
-                "true_rel": true_rel,
-                "llm_response": response.content,
-            })
+            results.append(
+                {
+                    "qid": qid,
+                    "docid": docid,
+                    "true_rel": true_rel,
+                    "llm_response": response.content,
+                }
+            )
         except Exception as e:
             print(f"Error with QID {qid}, DocID {docid}: {e}")
     print("Cooldown: Waiting 60 seconds before next query...")
     time.sleep(60)
 
 # save results to a file
-import json
-with open(os.path.join(DATA_DIR, "gemini_eval_results_query_injection_end.json"), "w", encoding="utf-8") as f:
+with open(
+    os.path.join(DATA_DIR, "gemini_eval_results_query_injection_end.json"),
+    "w",
+    encoding="utf-8",
+) as f:
     json.dump(results, f, indent=2)
 
 print("Evaluation complete. Results saved to gemini_eval_results.json.")

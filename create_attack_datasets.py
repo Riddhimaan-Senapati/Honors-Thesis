@@ -4,7 +4,7 @@ Create attack datasets for LLM query injection experiments.
 This script generates 4 JSON files, one for each attack type:
 - none_attacks.json: Original query-document pairs
 - prepend_attacks.json: Query prepended to document
-- append_attacks.json: Query appended to document  
+- append_attacks.json: Query appended to document
 - scatter_attacks.json: Query terms scattered throughout document
 
 Each file contains a list of dictionaries with:
@@ -25,6 +25,7 @@ import jsonlines
 
 # seed vale
 SEED = 42
+
 
 def load_qrels(filepath: Path) -> Dict[str, List[Tuple[str, int]]]:
     """Load qrels-like mapping from file of format: qid 0 docid rel."""
@@ -68,7 +69,9 @@ def load_queries(filepath: Path) -> Dict[str, str]:
     return mapping
 
 
-def apply_attack(attack_type: str, doc_text: str, query_text: str, seed: Optional[int] = None) -> str:
+def apply_attack(
+    attack_type: str, doc_text: str, query_text: str, seed: Optional[int] = None
+) -> str:
     """Apply the specified attack to the document text."""
     if attack_type == "none":
         return doc_text
@@ -89,35 +92,43 @@ def apply_attack(attack_type: str, doc_text: str, query_text: str, seed: Optiona
         raise ValueError(f"Unknown attack_type: {attack_type}")
 
 
-def create_attack_dataset(attack_type: str, qrels: Dict[str, List[Tuple[str, int]]], 
-                         queries: Dict[str, str], documents: Dict[str, str], 
-                         seed: int = SEED) -> List[Dict]:
+def create_attack_dataset(
+    attack_type: str,
+    qrels: Dict[str, List[Tuple[str, int]]],
+    queries: Dict[str, str],
+    documents: Dict[str, str],
+    seed: int = SEED,
+) -> List[Dict]:
     """Create dataset for a specific attack type."""
     dataset = []
-    
+
     for qid, pairs in qrels.items():
         query_text = queries.get(qid, "")
         if not query_text:
             print(f"Warning: Missing query text for qid={qid}")
             continue
-            
+
         for docid, rel in pairs:
             doc_text = documents.get(docid, "")
             if not doc_text:
                 print(f"Warning: Missing document text for docid={docid}")
                 continue
-                
-            attacked_doc_text = apply_attack(attack_type, doc_text, query_text, seed=seed)
-            
-            dataset.append({
-                "qid": qid,
-                "docid": docid,
-                "query_text": query_text,
-                "original_doc_text": doc_text,
-                "attacked_doc_text": attacked_doc_text,
-                "ground_truth_score": rel
-            })
-    
+
+            attacked_doc_text = apply_attack(
+                attack_type, doc_text, query_text, seed=seed
+            )
+
+            dataset.append(
+                {
+                    "qid": qid,
+                    "docid": docid,
+                    "query_text": query_text,
+                    "original_doc_text": doc_text,
+                    "attacked_doc_text": attacked_doc_text,
+                    "ground_truth_score": rel,
+                }
+            )
+
     return dataset
 
 
@@ -126,36 +137,38 @@ def main():
     PROJECT_ROOT = Path(__file__).parent
     DATA_DIR = PROJECT_ROOT / "data"
     OUTPUT_DIR = PROJECT_ROOT / "attack_datasets"
-    
+
     # Data paths
     qrels_path = DATA_DIR / "llm4eval_dev_qrel_2024.txt"
     queries_path = DATA_DIR / "llm4eval_query_2024.txt"
     docs_path = DATA_DIR / "llm4eval_document_2024.jsonl"
-    
+
     # Create output directory
     OUTPUT_DIR.mkdir(exist_ok=True)
-    
+
     print("Loading data...")
     qrels = load_qrels(qrels_path)
     queries = load_queries(queries_path)
     documents = load_documents(docs_path)
-    
-    print(f"Loaded {len(qrels)} queries, {len(queries)} query texts, {len(documents)} documents")
-    
+
+    print(
+        f"Loaded {len(qrels)} queries, {len(queries)} query texts, {len(documents)} documents"
+    )
+
     # Attack types to generate
     attack_types = ["none", "prepend", "append", "scatter"]
-    
+
     # Generate datasets for each attack type
     for attack_type in attack_types:
         print(f"\nCreating {attack_type} attack dataset...")
         dataset = create_attack_dataset(attack_type, qrels, queries, documents, seed=42)
-        
+
         output_file = OUTPUT_DIR / f"{attack_type}_attacks.json"
         with open(output_file, "w", encoding="utf-8") as f:
             json.dump(dataset, f, ensure_ascii=False, indent=2)
-        
+
         print(f"Saved {len(dataset)} pairs to {output_file}")
-    
+
     print(f"\nAll attack datasets created in: {OUTPUT_DIR}")
     print("Files created:")
     for attack_type in attack_types:

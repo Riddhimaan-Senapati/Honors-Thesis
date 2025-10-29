@@ -4,7 +4,12 @@ from pathlib import Path
 # Experiment choices
 PROMPT_TYPES = ["BASIC", "RATIONALE", "UTILITY"]
 ATTACK_TYPES = ["none", "prepend", "append", "scatter"]
-MITIGATION_TYPES = ["none", "user_prompt_hardening", "system_prompt_hardening", "few_shot"]
+MITIGATION_TYPES = [
+    "none",
+    "user_prompt_hardening",
+    "system_prompt_hardening",
+    "few_shot",
+]
 
 
 BASELINE_TEMPLATE = """#!/bin/bash
@@ -51,7 +56,9 @@ def main() -> None:
                 """
                 script_name = f"run_{prompt}_{attack}_{mitigation}.sh"
                 script_path = run_scripts_dir / script_name
-                content = BASELINE_TEMPLATE.format(prompt=prompt, attack=attack, mitigation=mitigation)
+                content = BASELINE_TEMPLATE.format(
+                    prompt=prompt, attack=attack, mitigation=mitigation
+                )
                 # Force LF line endings so SLURM does not complain about DOS line breaks
                 with open(script_path, "w", encoding="utf-8", newline="\n") as f:
                     f.write(content)

@@ -8,12 +8,14 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Set model name from environment variables
-MODEL_NAME = os.getenv('MODEL_NAME')
+MODEL_NAME = os.getenv("MODEL_NAME")
 
 # Set script and results directories
-SCRIPTS_DIR = 'run_scripts'
-RESULTS_DIR = f'data/{MODEL_NAME}'
-SCRIPT_PATTERN = re.compile(r"^run_(?P<prompt>[^_]+)_(?P<attack>[^_]+)_(?P<mitigation>[^.]+)\.sh$")
+SCRIPTS_DIR = "run_scripts"
+RESULTS_DIR = f"data/{MODEL_NAME}"
+SCRIPT_PATTERN = re.compile(
+    r"^run_(?P<prompt>[^_]+)_(?P<attack>[^_]+)_(?P<mitigation>[^.]+)\.sh$"
+)
 
 
 def expected_result_filename(prompt: str, attack: str, mitigation: str) -> str:
@@ -90,5 +92,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
-
